@@ -40,7 +40,7 @@ class RubyMate < ScriptMate
             "<br style=\"display: none\"/>"
     else
       if @command.test_script?
-        return ( str.map do |line|
+        return ( (str.respond_to?(:map) ? str : str.chars).map do |line|
           if line =~ /^(\s+)(\S.*?):(\d+)(?::in\s*`(.*?)')?/
             indent, file, line, method = $1, $2, $3, $4
             url, display_name = '', 'untitled document';
